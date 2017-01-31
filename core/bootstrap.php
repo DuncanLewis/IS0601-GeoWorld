@@ -7,7 +7,7 @@
  */
 
 //include our configuration file
-$cnfPath = ROOT . DS . 'config.php';
+$cnfPath = ROOT . DS . 'config' . DS . 'config.php';
 require_once($cnfPath);
 
 //Now we should autoload all classes using spl_autoload (a magical function!)
@@ -21,12 +21,12 @@ spl_autoload_register(function($className) {
 
     // next check the application controllers
     if(!$valid){
-        $valid = file_exists($classFile = $root . DS . 'controllers' . DS . $className . '.php');
+        $valid = file_exists($classFile = $root . DS . 'controller' . DS . $className . '.php');
     }
 
     // finally check the application models
     if(!$valid){
-        $valid = file_exists($classFile = $root . DS . 'models' . DS . $className . '.php');
+        $valid = file_exists($classFile = $root . DS . 'model' . DS . $className . '.php');
     }
 
     // if at this point $valid is true, include the file, else throw an error
@@ -42,4 +42,4 @@ spl_autoload_register(function($className) {
 $router = new Router($_route);
 
 // finally we'll go ahead and dispatch
-$router->dispatch();
+$router->getRoute();

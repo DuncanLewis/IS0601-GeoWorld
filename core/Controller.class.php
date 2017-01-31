@@ -83,7 +83,7 @@ class Controller
         $this->_controller = $controller;
         $this->_action = $action;
 
-        $this->view = new View();
+        $this->view = new View($this->_controller, $this->_action);
 
 
         $this->_model = new $model($this->database);

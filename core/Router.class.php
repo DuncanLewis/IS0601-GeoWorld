@@ -78,13 +78,20 @@ class Router
 
             //Set $this->_controller to the first part of the route
             $this->_controller = isset($urlArr[0]) ? $urlArr[0] : '';
+            array_shift($urlArr);
 
             //Now set $this->_action to the second part of route
-            $this->_action = isset($urlArr[1]) ? $urlArr[1] : '';
+            $this->_action = isset($urlArr[0]) ? $urlArr[0] : '';
+            array_shift($urlArr);
 
             //Now we are left with parameters of the query, set these to an array
             //ToDo: figure out how to make this get all paramters not just the first
-            $this->_parameters = isset($urlArr[2]) ? $urlArr[2] : '';
+            $this->_parameters = isset($urlArr[0]) ? $urlArr[0] : '';
+
+
+            var_dump($this->_controller);
+            var_dump($this->_action);
+            var_dump($this->_parameters);
 
             //Now we must check if controller is empty, if so then send to default controller (e.g. homepage)
 
@@ -93,24 +100,23 @@ class Router
                 $this->_action = 'index';
             }
 
-            $controllerName = $this->_controller;
+            $controllerName = ucfirst($this->_controller);
 
-            $modelName = $this->_controller . 'Model';
+            $modelName = ucfirst($this->_controller);
 
+            //ToDo: fix - not working as we are left with a ? after the name of the controller. E.g. Country?Controller is called
             $this->_controller = $controllerName . 'Controller';
 
-            $dispatch = new $this->_controller($controllerName, $this->_action);
+            $dispatch = new $this->_controller($modelName, $controllerName, $this->_action);
 
 
             if ((int)method_exists($this->_controller, $this->_action)) {
-                call_user_func_array(array($dispatch, $this->_action), $this->_parameters);
+                call_user_func_array(array($dispatch, $this->_action), array($this->_parameters));
             } else {
                 //ToDo: add exception throw
             }
 
         }
-
-
 
         return $this->_route;
     }

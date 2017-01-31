@@ -38,8 +38,19 @@ class MySQL {
     private $password = MYSQL_PASSWORD;
 
 
+    /**
+     * Database Connection Handler
+     *
+     * @var
+     */
     private $dbHandler;
 
+
+    /**
+     * Error Handler
+     *
+     * @var string
+     */
     private $error;
 
 

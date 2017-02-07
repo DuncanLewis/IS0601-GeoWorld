@@ -86,10 +86,28 @@ class Controller
         $this->view = new View($this->_controller, $this->_action);
 
 
-        $this->_model = new $model($this->database);
-        $this->_model->controller = $this;
+        $this->_model = $model;
+        $this->$model = new $model;
+        //$this->_model->controller = $this;
         $this->table = $controller;
 
+    }
+
+
+    /**
+     * Set
+     *
+     * Sets variables for use in the view layer, using the view
+     *
+     * @param $varName
+     * @param $varValue
+     */
+    public function set($varName, $varValue) {
+        $this->view->set($varName, $varValue);
+    }
+
+    public function __destruct() {
+        $this->view->renderView();
     }
 
 }

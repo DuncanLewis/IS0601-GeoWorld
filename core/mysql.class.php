@@ -78,7 +78,7 @@ class MySQL {
 
         //Attempt a connection using the try catch block structure
         try {
-            $this->dbh = new PDO($dsn, $this->username, $this->password, $options);
+            $this->dbHandler = new PDO($dsn, $this->username, $this->password, $options);
         } catch (PDOException $e) {
             $this->error = $e->getMessage();
         }

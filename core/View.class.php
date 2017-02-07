@@ -41,6 +41,8 @@ class View
             include(ROOT . DS . 'view' . DS . 'layout' . DS . 'header.php');
         }
 
+        include (ROOT . DS . 'view' . DS . $this->_controller . DS . $this->_action . '.php');
+
         if (file_exists(ROOT . DS . 'view' . DS . 'layout' . DS . 'footer.php')) {
             include(ROOT . DS . 'view' . DS . 'layout' . DS . 'footer.php');
         }

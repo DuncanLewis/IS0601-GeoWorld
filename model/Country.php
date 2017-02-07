@@ -6,7 +6,12 @@
  * Date: 31/01/2017
  * Time: 13:18
  */
-class Country
+class Country extends Model
 {
+
+    protected $_primary = "A3Code";
+
+    //public $_table = "Country";
+
 
 }

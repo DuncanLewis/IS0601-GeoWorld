@@ -11,6 +11,7 @@ define("MYSQL_HOST", "127.0.0.1");
 define("MYSQL_USERNAME", "root");
 define("MYSQL_PASSWORD", "root");
 define("MYSQL_DATABASE", "geodata");
+define("MYSQL_PREFIX", "W_");
 
 class DB_CONFIG {
 
@@ -18,7 +19,8 @@ class DB_CONFIG {
         'hostname' => MYSQL_HOST,
         'port' => 3306,
         'username' =>  MYSQL_USERNAME,
-        'password' => MYSQL_PASS
+        'password' => MYSQL_PASS,
+        'prefix' => MYSQL_PREFIX
     );
 
 }

@@ -17,8 +17,13 @@ class CountryController extends Controller
      */
     public function index() {
 
-        echo "Index";
+        //echo "Index";
 
+        $countryList = $this->Country->findAll();
+
+        $this->set('countries', $countryList);
+
+        print_r($countryList);
     }
 
     /**
@@ -30,7 +35,34 @@ class CountryController extends Controller
      */
     public function view($id) {
 
-        echo($id);
+        //echo($id);
+
+        $country = $this->Country->find($id);
+
+        $this->set('country', $country);
+
+        var_dump($country);
+
+    }
+
+
+    /**
+     * Search
+     *
+     * Search action, allows the users to search for a
+     *
+     * @param $query Country must be a minimum 3 in length
+     */
+    public function search($query) {
+
+        //Check if string is under 3 characters long, if so then error ToDo: check if this needs to be less than or <=
+        if (strlen($query) < 3) {
+            echo "Please enter search query longer than 3 characters."; //Todo make a proper error handler
+        }
+
+        //Call to the model method for search
+
+        //Return results to the page
 
     }
 

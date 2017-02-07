@@ -17,13 +17,9 @@ class CountryController extends Controller
      */
     public function index() {
 
-        //echo "Index";
-
         $countryList = $this->Country->findAll();
 
-        $this->set('countries', $countryList);
-
-        print_r($countryList);
+        $this->set('countryList', $countryList);
     }
 
     /**
@@ -31,18 +27,13 @@ class CountryController extends Controller
      *
      * View action for CountryController. Displays a specific country, specified by the country ID
      *
-     * @param $id Id of the country
+     * @param $id CountryController ID of the country
      */
     public function view($id) {
-
-        //echo($id);
 
         $country = $this->Country->find($id);
 
         $this->set('country', $country);
-
-        var_dump($country);
-
     }
 
 
@@ -51,7 +42,7 @@ class CountryController extends Controller
      *
      * Search action, allows the users to search for a
      *
-     * @param $query Country must be a minimum 3 in length
+     * @param $query CountryController must be a minimum 3 in length
      */
     public function search($query) {
 

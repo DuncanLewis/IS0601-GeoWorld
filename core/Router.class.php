@@ -88,11 +88,6 @@ class Router
             //ToDo: figure out how to make this get all paramters not just the first
             $this->_parameters = isset($urlArr[0]) ? $urlArr[0] : '';
 
-
-            var_dump($this->_controller);
-            var_dump($this->_action);
-            var_dump($this->_parameters);
-
             //Now we must check if controller is empty, if so then send to default controller (e.g. homepage)
 
             //Next if action is empty assume action is 'index' -- duplication effort here

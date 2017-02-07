@@ -11,7 +11,4 @@ class Country extends Model
 
     protected $_primary = "A3Code";
 
-    //public $_table = "Country";
-
-
 }

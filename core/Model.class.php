@@ -9,10 +9,19 @@
 class Model extends MySQL
 {
 
+    /**
+     * @var string
+     */
     protected $_model;
 
+    /**
+     * @var string
+     */
     protected $_table;
 
+    /**
+     * @var
+     */
     protected $_primary;
 
     /**
@@ -35,9 +44,9 @@ class Model extends MySQL
 
 
     /**
-     * Model find
+     * find
      *
-     * Finds a specific country
+     * Finds a specific record
      *
      * ToDo: convert to prepared statement execution
      *
@@ -46,8 +55,6 @@ class Model extends MySQL
      */
     public function find($id) {
         $query = "SELECT * FROM " . $this->_table . " WHERE " . $this->_primary . " = '" . $id . "'";
-
-        echo $query;
         $query = $this->query($query);
 
         $results = $this->resultArray($query);
@@ -55,12 +62,18 @@ class Model extends MySQL
     }
 
 
+    /**
+     * findAll
+     *
+     * Finds all records from a table
+     *
+     * @return mixed
+     */
     public function findAll() {
         $query = "SELECT * FROM " . $this->_table;
         $query =  $this->query($query);
 
         $results = $this->resultArray($query);
-
         return $results;
     }
 

@@ -13,6 +13,7 @@ define("MYSQL_PASSWORD", "root");
 define("MYSQL_DATABASE", "geodata");
 define("MYSQL_PREFIX", "W_");
 
+
 class DB_CONFIG {
 
     public $default = array(

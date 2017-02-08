@@ -14,11 +14,19 @@ body {
 }
 
 a {
-    color: #fff;
     text-decoration: none;
 }
 
 /* Some grid stuff first */
+
+main {
+    margin:20px;
+}
+
+.h-center {
+    margin-left:auto;
+    margin-right:auto;
+}
 
 .flex-grid {
     display: flex;
@@ -39,16 +47,18 @@ a {
 /* Header */
 header {
     width: 100%;
-    height: 450px;
+    height: 600px;
     background-size: cover;
     background-position: center;
+    min-height: 100%;
 }
 
 
 /** Header navigation **/
 
 header > nav {
-    padding: 10px 0;
+    padding: 20px 15px;
+    color: #fff;
 }
 
 header > nav ul {
@@ -67,6 +77,7 @@ header > nav ul > li {
 header > nav ul > li > a {
     padding: 0 15px;
     text-transform: uppercase;
+    color: #fff;
 }
 
 .nav-right {
@@ -81,6 +92,7 @@ header > nav ul > li > a {
 
 /** Header form **/
 /*ToDo: make this vertical center */
+
 header > .header-feature {
     text-align: center;
     width: 30%;
@@ -117,7 +129,7 @@ input[type="text"]:focus {
 }
 
 input[type="text"],
-input[type="search"]{
+input[type="search"] {
     padding: 10px;
     border: none;
     border-bottom: solid 2px #ffffff;
@@ -127,4 +139,28 @@ input[type="search"]{
 input[type="text"]:focus,
 input[type="search"]:focus {
     border-bottom: solid 2px lightgray;
+}
+
+/* Flag thumbnail */
+.flag-thumbnail {
+    border:5px solid #ffffff;
+    background-color: #000000;
+    height: 100px;
+    -moz-border-radius:75px;
+    -webkit-border-radius: 75px;
+    width: 100px;
+}
+
+
+
+/* Article items (search results) */
+.search-item {
+    border-bottom: 3px solid lightgray;
+    padding: 0 0 30px 0;
+}
+
+
+/* Country Profile */
+#country-profile header {
+    text-align: center;
 }

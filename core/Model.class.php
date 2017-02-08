@@ -46,6 +46,34 @@ class Model extends MySQL
     /**
      * find
      *
+     * General find functionality
+     *
+     * ToDo: convert to prepared statement execution
+     * ToDo: implement LIMIT function
+     *
+     * @param string $level
+     * @param $conditions
+     * @return mixed
+     */
+    public function find($level = 'all', $conditions) {
+
+        $conditionString = "";
+
+        foreach ($conditions as $key => $value) {
+            $conditionString .= $key . ' "' . $value . '" ';
+        }
+
+        $query = "SELECT * FROM " . $this->_table . " WHERE " . $conditionString;
+        $query = $this->query($query);
+
+        $results = $this->resultArray($query);
+
+        return $results;
+    }
+
+    /**
+     * findById
+     *
      * Finds a specific record
      *
      * ToDo: convert to prepared statement execution
@@ -53,13 +81,17 @@ class Model extends MySQL
      * @param $id
      * @return array Model result array
      */
-    public function find($id) {
+    public function findById($id) {
         $query = "SELECT * FROM " . $this->_table . " WHERE " . $this->_primary . " = '" . $id . "'";
         $query = $this->query($query);
 
         $results = $this->resultArray($query);
+
+        //Reset the array pointer, i.e. move all values up one level as we only have one result to deal with
+        $results = reset($results);
         return $results;
     }
+
 
 
     /**

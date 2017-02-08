@@ -33,8 +33,16 @@ class View
 
     public function renderView()
     {
+        //ToDo: move this functionality to an app controller or something?
+        $routing = array(
+            'controller' => $this->_controller,
+            'action' => $this->_action
+        );
+        $this->set('routing', $routing);
+
         //first extract our variables which have been set by set method
         extract($this->vars);
+
 
         //Now load the view files associated with current controller / action (best to check if the file exists first to prevent an ugly error)
         if (file_exists(ROOT . DS . 'view' . DS . 'layout' . DS . 'header.php')) {

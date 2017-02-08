@@ -89,10 +89,13 @@ class Router
             $this->_parameters = isset($urlArr[0]) ? $urlArr[0] : '';
 
             //Now we must check if controller is empty, if so then send to default controller (e.g. homepage)
+            if (empty($this->_controller)) {
+                $this->_controller = 'country'; //ToDo: make this configurable
+            }
 
             //Next if action is empty assume action is 'index' -- duplication effort here
             if (empty($this->_action)) {
-                $this->_action = 'index';
+                $this->_action = 'index'; //Leave this as default action, convention > configuration
             }
 
             $controllerName = ucfirst($this->_controller);

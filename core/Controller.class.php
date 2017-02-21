@@ -95,6 +95,25 @@ class Controller
 
 
     /**
+     * redirect
+     *
+     * Redirects from one controller to another controller / action
+     *
+     * @param string $controller
+     * @param string $action
+     * @param array $params
+     */
+    public function redirect($controller, $action = 'index', $params = array()) {
+
+        //Set the new location based on method arguments above, implodes array with / separator for URL params
+        $newLocation = "/" . $controller . "/" . $action . "/" . implode("/", $params);
+
+        header("Location:" . $newLocation);
+        exit;
+    }
+
+
+    /**
      * Set
      *
      * Sets variables for use in the view layer, using the view

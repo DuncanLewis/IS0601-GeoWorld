@@ -20,7 +20,7 @@ a {
 /* Some grid stuff first */
 
 main {
-    margin:20px;
+    margin:0;
 }
 
 .h-center {
@@ -30,6 +30,7 @@ main {
 
 .flex-grid {
     display: flex;
+    margin:20px;
 }
 
 .col {
@@ -55,26 +56,25 @@ header {
 
 
 /** Header navigation **/
-
-header > nav {
+nav {
     padding: 20px 15px;
     color: #fff;
 }
 
-header > nav ul {
+nav ul {
     display: inline;
     list-style: none;
     margin: 0;
     padding: 0;
 }
 
-header > nav ul > li {
+nav ul > li {
     display: inline-block;
     vertical-align: middle;
     height: 100%;
 }
 
-header > nav ul > li > a {
+nav ul > li > a {
     padding: 0 15px;
     text-transform: uppercase;
     color: #fff;
@@ -88,28 +88,6 @@ header > nav ul > li > a {
 .nav-brand,
 .nav-brand h1 {
     display: inline;
-}
-
-/** Header form **/
-/*ToDo: make this vertical center */
-
-header > .header-feature {
-    text-align: center;
-    width: 30%;
-    margin-left: auto;
-    margin-right:auto;
-    clear: both;
-    position: relative;
-
-}
-
-header > .header-feature > .header-search {
-}
-
-header > .header-feature > .header-search input {
-    height: 40px;
-    font-size:40px;
-    color: #ffffff;
 }
 
 
@@ -141,6 +119,86 @@ input[type="search"]:focus {
     border-bottom: solid 2px lightgray;
 }
 
+/** Table Styling **/
+
+table {
+    width: 100%;
+    max-width: 100%;
+    background-color: transparent;
+    border-spacing: 0;
+    border-collapse: collapse;
+}
+
+table > tbody > tr > td {
+    border-top: 1px solid #ddd;
+    padding: 10px;
+}
+
+
+/** Cards **/
+
+.card {
+    margin-bottom: 20px;
+    background-color: #fff;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, .05)
+}
+
+.card > .card-body {
+    padding: 15px;
+}
+
+.card > .card-heading {
+    padding: 10px 15px;
+    border-bottom: 1px solid transparent;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px
+}
+
+.card-standard {
+    border-color: #ddd;
+}
+
+.card-standard > .card-heading {
+    color: black;
+    background-color: #f5f5f5;
+    border-color: #ddd;
+}
+
+/** Header form **/
+
+.jumbo-feature {
+    margin-top:-68px;
+}
+
+.jumbo-feature > .jumbo-content {
+    text-align: center;
+    clear: both;
+    position: relative;
+    top: 35%;
+    transform: translateY(-35%);
+}
+
+.jumbo-feature > .jumbo-content > .header-search {
+    margin-left: auto;
+    margin-right:auto;
+    width: 30%;
+}
+
+.jumbo-feature > .jumbo-content > .header-search input {
+    height: 40px;
+    font-size:40px;
+    color: #ffffff;
+}
+
+
+/* Country Profile */
+#country-profile header {
+    text-align: center;
+    color: #ffffff;
+}
+
 /* Flag thumbnail */
 .flag-thumbnail {
     border:5px solid #ffffff;
@@ -160,7 +218,5 @@ input[type="search"]:focus {
 }
 
 
-/* Country Profile */
-#country-profile header {
-    text-align: center;
-}
+
+

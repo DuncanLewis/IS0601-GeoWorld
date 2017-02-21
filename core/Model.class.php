@@ -49,7 +49,9 @@ class Model extends MySQL
      * General find functionality
      *
      * ToDo: convert to prepared statement execution
-     * ToDo: implement LIMIT function
+     * ToDo: implement LIMIT function - do this by converting $conditions to general $options
+     * ToDo: $options will be an array containing conditions, limit, group by etc.
+     * ToDo: perhaps we need to move this to some kind of queryBuilder method?
      *
      * @param string $level
      * @param $conditions
@@ -60,7 +62,13 @@ class Model extends MySQL
         $conditionString = "";
 
         foreach ($conditions as $key => $value) {
-            $conditionString .= $key . ' "' . $value . '" ';
+
+            //If the current condition is a limit clause, dont include the " around $value
+           if ($key == "LIMIT ") {
+                $conditionString .= $key . ' ' . $value;
+            } else {
+               $conditionString .= $key . ' "' . $value . '" ';
+           }
         }
 
         $query = "SELECT * FROM " . $this->_table . " WHERE " . $conditionString;

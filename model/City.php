@@ -24,7 +24,8 @@ class City extends Model
 
         if (isset($country)) {
             $conditions = array(
-                'A3Code LIKE' => $country
+                'A3Code LIKE' => $country,
+                'LIMIT ' => $limit
             );
         }
 

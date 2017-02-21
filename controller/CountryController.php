@@ -33,14 +33,21 @@ class CountryController extends Controller
 
         $country = $this->Country->findById($id);
 
-        $this->set('country', $country);
+        $capitalId = $country['Capital'];
 
-        //Register City class so we can lookup the countries biggest cities
-        //ToDo: implement the Limit in the getLargest method
+        //Register City class so we can lookup the countries biggest cities, and the countries capital city
         $City = new City();
+        $capitalCity = $City->findById($capitalId);
         $largestCities = $City->getLargest($country['A3Code'], 5);
 
+        //Register new CountryLanguage class so we can view the most widely used languages in a country
+        $CountryLanguage = new CountryLanguage();
+        $topLanguages = $CountryLanguage->getLanguageUsage($id, 10);
+
+        $this->set('country', $country);
+        $this->set('capitalCity', $capitalCity);
         $this->set('largestCities', $largestCities);
+        $this->set('topLanguages', $topLanguages);
     }
 
 
@@ -60,13 +67,19 @@ class CountryController extends Controller
             echo "Please enter search query longer than 3 characters."; //Todo make a proper error handler
         }
 
-        //ToDo: Like isnt the best operator here, perhaps try implementing wildcard
+        //Set our conditions array using wildcard operators
         $conditions = array(
-            'Name LIKE' => $query
+            'Name LIKE' => "%" . $query . "%"
         );
 
         //Call to the model method for search
         $countryList = $this->Country->find('all', $conditions);
+
+        //Check countryList length, if only one result is found then we have an exact match
+        if (count($countryList) === 1) {
+            $country = $countryList[0]['A3Code'];
+            $this->redirect('country', 'view', array($country));
+        }
 
         //Return results to the page
         $this->set('countryList', $countryList);

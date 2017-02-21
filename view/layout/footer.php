@@ -1,6 +1,6 @@
 </main>
 <script type="text/javascript">
-    var header = document.getElementsByTagName("header")[0];
+    var header = document.querySelectorAll('[data-bgchange="true"]')[0];
 
     window.onload = function () {
 
@@ -29,7 +29,7 @@
             header.style.backgroundRepeat = 'no-repeat';
             header.style.position = 'center center';
         }
-        window.setInterval(changeImage, 5000);
+        window.setInterval(changeImage, 15000);
     }
 </script>
 

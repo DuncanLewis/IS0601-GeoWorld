@@ -106,9 +106,9 @@ class Controller
     public function redirect($controller, $action = 'index', $params = array()) {
 
         //Set the new location based on method arguments above, implodes array with / separator for URL params
-        $newLocation = "/" . $controller . "/" . $action . "/" . implode("/", $params);
+        $newLocation = $controller . "/" . $action . "/" . implode("/", $params);
 
-        header("Location:" . $newLocation);
+        header("Location:" . BASE_URL . $newLocation);
         exit;
     }
 

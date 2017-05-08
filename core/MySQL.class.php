@@ -1,6 +1,6 @@
 <?php
 /**
- * core/mysql.class.php
+ * core/MySQL.class.php
  *
  * Database connection and execution class - handles raw interactions with the database
  */

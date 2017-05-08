@@ -126,17 +126,23 @@ class Model extends MySQL
      * @param $id
      * @param $data
      * @return mixed
+     *
+     * ToDo: change to prepared statement
      */
     public function update($id, $data) {
 
         foreach ($data as $field => $value) {
-            $setArray[] = $field . ' = "' . $value . '"';
+            $setArray[] = $field . ' = ":' . $field . '"';
         }
 
         $setStatement = implode(', ', $setArray);
 
         $query = 'UPDATE ' . $this->_table . ' SET ' . $setStatement . ' WHERE A3Code = "' . $id . '"';
-        $query = $this->query($query);
+
+
+        foreach ($data as $key => &$val) {
+            $query->bindParam(':' . $key, $val);
+        }
 
         $results = $this->execute($query);
 

@@ -8,9 +8,8 @@
 
 ?>
 <article id="country-profile">
-
     <header class="jumbo-feature"
-            style="background-image:radial-gradient(transparent, black), url('https://source.unsplash.com/1600x900/?<?php echo $country['Name']; ?>');">
+            style="background-image:radial-gradient(transparent, black), url('https://source.unsplash.com/1600x900/?<?php echo str_replace(' ', '%20',utf8_encode($country['Name'])); ?>');"> <!-- Use STR replace to fix HTML Validation error that doesnt allow spaces in img src -->
         <div class="jumbo-content">
             <div class="flex-grid">
 
@@ -48,15 +47,15 @@
     <!-- ToDo: Show more details on the view page, e.g. top 5 cities by population, head of state details etc. -->
 
     <div class="flex-grid">
-        <article class="col">
+        <aside class="col">
             <iframe
                     width="600"
                     height="450"
-                    frameborder="0" style="border:0"
-                    src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDanqm6pL0KyFTKi_B9P8ZJKg0U3QYVGww&q='<?php echo $country['name']; ?>'"
+                    style="border:0"
+                    src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDanqm6pL0KyFTKi_B9P8ZJKg0U3QYVGww&q='<?php echo str_replace(' ', '%20',utf8_encode($country['Name'])); ?>'">
             </iframe>
             <div id="map"></div>
-        </article>
+        </aside>
 
         <aside class="col">
 
@@ -87,17 +86,6 @@
 
 
 <script type="text/javascript">
-    function initMap() {
-        var country = {<?php echo $country['Name']; ?>};
-        var map = new google.maps.Map(document.getElementById('map'), {
-            zoom: 4,
-            center: country
-        });
-        var marker = new google.maps.Marker({
-            position: country,
-            map: map
-        });
-    }
 
     function updateHeadOfState() {
         var xhttp = new XMLHttpRequest();
@@ -110,8 +98,6 @@
         xhttp.send("id=<?php echo $country['A3Code'] ?>&HeadOfState=" + newHeadOfState);
     }
 </script>
-<script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDgY0MZMRpVdA09_RUPVndEEFUT_UN2-0&callback=initMap">
-</script>
+
 
 

@@ -5,12 +5,10 @@ Have to develop own as use of bootstrap / other external framework is not allowe
  */
 
 /* Reset default styles */
-html {
+html, body {
     font-family: 'Montserrat', sans-serif;
-}
-
-body {
-    margin: 0;
+    margin:0;
+    height:100%
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -54,6 +52,21 @@ a {
 
 main {
     margin:0;
+    min-height: 100%;
+    margin-bottom: -100px;
+}
+
+main:after {
+    content: "";
+    display: block;
+    height: 100px;
+}
+
+footer {
+    height: 50px;
+    background: #eee;
+    text-align: center;
+    padding: 25px;
 }
 
 .h-center {
@@ -135,6 +148,31 @@ nav ul > li > a {
 
 
 /* Forms and inputs */
+input,
+label,
+select,
+button,
+textarea
+{
+    margin:0;
+    border:0;
+    padding:0;
+    display:inline-block;
+    vertical-align:middle;
+    white-space:normal;
+    background:none;
+    line-height:1;
+
+    /* Browsers have different default form fonts */
+    font-size:13px;
+}
+
+/* Remove the stupid outer glow in Webkit */
+input:focus
+{
+    outline:0;
+}
+
 input[type="text"],
 input[type="search"] {
     display: block;

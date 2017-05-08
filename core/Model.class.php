@@ -57,7 +57,7 @@ class Model extends MySQL
      * @param $conditions
      * @return mixed
      */
-    public function find($level = 'all', $conditions) {
+    public function find($level = 'all', $conditions = null) {
 
         $conditionString = "";
 
@@ -114,6 +114,32 @@ class Model extends MySQL
         $query =  $this->query($query);
 
         $results = $this->resultArray($query);
+        return $results;
+    }
+
+
+    /**
+     * update
+     *
+     * Builds and executes an update query
+     *
+     * @param $id
+     * @param $data
+     * @return mixed
+     */
+    public function update($id, $data) {
+
+        foreach ($data as $field => $value) {
+            $setArray[] = $field . ' = "' . $value . '"';
+        }
+
+        $setStatement = implode(', ', $setArray);
+
+        $query = 'UPDATE ' . $this->_table . ' SET ' . $setStatement . ' WHERE A3Code = "' . $id . '"';
+        $query = $this->query($query);
+
+        $results = $this->execute($query);
+
         return $results;
     }
 

@@ -7,41 +7,6 @@
  */
 
 ?>
-
-
-<!--
-Country:
-
-array (size=15)
-'A3Code' => string 'JPN' (length=3)
-'A2Code' => string 'JP' (length=2)
-'Name' => string 'Japan' (length=5)
-'Continent' => string 'AS' (length=2)
-'Region' => string 'Eastern Asia' (length=12)
-'SurfaceArea' => string '377829.00' (length=9)
-'IndepYear' => string '-660' (length=4)
-'Population' => string '126714000' (length=9)
-'LifeExpectancy' => string '80.7' (length=4)
-'GNP' => string '3787042.00' (length=10)
-'LocalName' => string 'Nihon/Nippon' (length=12)
-'GovernmentForm' => string 'Constitutional Monarchy' (length=23)
-'HeadOfState' => string 'Akihito' (length=7)
-'Capital' => string '1532' (length=4)
-'tld' => string 'jp' (length=2)
-
-City:
- 0 =>
-    array (size=7)
-      'ID' => string '3357' (length=4)
-      'name' => string 'Istanbul' (length=8)
-      'A3Code' => string 'TUR' (length=3)
-      'district' => string 'Istanbul' (length=8)
-      'population' => string '8787958' (length=7)
-      'lat' => string '0.0000000' (length=9)
-      'lng' => string '0.0000000' (length=9)
-
--->
-
 <article id="country-profile">
 
     <header class="jumbo-feature"
@@ -70,8 +35,8 @@ City:
                             <small>Local Name</small>
                         </div>
                         <div class="col">
-                            <h3><?php echo $country['HeadOfState']; ?> </h3>
-                            <small>Head of State</small>
+                            <h3 id="headOfState" ondblclick="updateHeadOfState()"><?php echo $country['HeadOfState']; ?> </h3>
+                            <small class="tooltip"><span class="tooltiptext">Double click to edit</span>Head of State</small>
                         </div>
                     </div>
                 </div>
@@ -84,7 +49,13 @@ City:
 
     <div class="flex-grid">
         <article class="col">
-
+            <iframe
+                    width="600"
+                    height="450"
+                    frameborder="0" style="border:0"
+                    src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDanqm6pL0KyFTKi_B9P8ZJKg0U3QYVGww&q='<?php echo $country['name']; ?>'"
+            </iframe>
+            <div id="map"></div>
         </article>
 
         <aside class="col">
@@ -112,6 +83,35 @@ City:
 
         <?php //var_dump($topLanguages); ?>
     </div>
-
 </article>
+
+
+<script type="text/javascript">
+    function initMap() {
+        var country = {<?php echo $country['Name']; ?>};
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 4,
+            center: country
+        });
+        var marker = new google.maps.Marker({
+            position: country,
+            map: map
+        });
+    }
+
+    function updateHeadOfState() {
+        var xhttp = new XMLHttpRequest();
+        var currentHeadOfState =  document.getElementById("headOfState").innerHTML;
+        var newHeadOfState = prompt("Please enter new head of state:", currentHeadOfState);
+        document.getElementById("headOfState").innerHTML = newHeadOfState;
+
+        xhttp.open("POST", "/country/updateHeadOfState", true);
+        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xhttp.send("id=<?php echo $country['A3Code'] ?>&HeadOfState=" + newHeadOfState);
+    }
+</script>
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDgY0MZMRpVdA09_RUPVndEEFUT_UN2-0&callback=initMap">
+</script>
+
 

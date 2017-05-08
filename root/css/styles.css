@@ -6,15 +6,48 @@ Have to develop own as use of bootstrap / other external framework is not allowe
 
 /* Reset default styles */
 html {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Montserrat', sans-serif;
 }
 
 body {
     margin: 0;
 }
 
+h1, h2, h3, h4, h5, h6 {
+    font-family: inherit;
+    font-weight: 500;
+    line-height: 1.1;
+    color: inherit;
+}
+
+h1 {
+    font-size: 2.5rem;
+}
+
+h2 {
+    font-size: 2rem;
+}
+
+h3 {
+    font-size: 1.75rem;
+}
+
+h4 {
+    font-size: 1.5rem;
+}
+
+h5 {
+    font-size: 1.25rem;
+}
+
+h6 {
+    font-size: 1rem;
+}
+
+
 a {
     text-decoration: none;
+    color: #4ECDC4;
 }
 
 /* Some grid stuff first */
@@ -26,6 +59,16 @@ main {
 .h-center {
     margin-left:auto;
     margin-right:auto;
+}
+
+.auto-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 25%);
+    grid-auto-flow: row;
+}
+
+.box {
+    padding: 10px;
 }
 
 .flex-grid {
@@ -97,7 +140,6 @@ input[type="search"] {
     display: block;
     margin: 0;
     width: 100%;
-    font-family: sans-serif;
     font-size: 18px;
     box-shadow: none;
     border-radius: 0;
@@ -119,6 +161,23 @@ input[type="search"]:focus {
     border-bottom: solid 2px lightgray;
 }
 
+
+/** Change the placeholder colour on header search, default is unreadable **/
+.header-search ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+    color: #ffffff;
+}
+.header-search ::-moz-placeholder { /* Firefox 19+ */
+    color: #ffffff;
+}
+.header-search :-ms-input-placeholder { /* IE 10+ */
+    color: #ffffff;
+}
+.header-search :-moz-placeholder { /* Firefox 18- */
+    color: #ffffff;
+}
+
+
+
 /** Table Styling **/
 
 table {
@@ -138,22 +197,53 @@ table > tbody > tr > td {
 /** Cards **/
 
 .card {
-    margin-bottom: 20px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 0;
     background-color: #fff;
     border: 1px solid transparent;
-    border-radius: 4px;
-    box-shadow: 0 1px 1px rgba(0, 0, 0, .05)
+    border-radius: 8px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+    overflow: hidden;
+    justify-content: center;
+    align-items: center;
 }
 
 .card > .card-body {
     padding: 15px;
 }
 
+
+
 .card > .card-heading {
     padding: 10px 15px;
     border-bottom: 1px solid transparent;
     border-top-left-radius: 4px;
     border-top-right-radius: 4px
+}
+
+.card > .card-img {
+    display: block;
+    width: 102%;
+    height: 100%;
+    object-fit: contain;
+    filter: blur(2px);
+    margin:-1%;
+}
+
+.card-img-overlay {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 1.25rem;
+    background: rgba(0, 0, 0, 0.50);
+}
+
+.card-img-overlay > .card-title {
+    text-align: center;
 }
 
 .card-standard {
@@ -165,6 +255,12 @@ table > tbody > tr > td {
     background-color: #f5f5f5;
     border-color: #ddd;
 }
+
+.card-dark {
+    color: rgba(255,255,255,.65);
+}
+
+
 
 /** Header form **/
 
@@ -215,6 +311,37 @@ table > tbody > tr > td {
 .search-item {
     border-bottom: 3px solid lightgray;
     padding: 0 0 30px 0;
+}
+
+
+/* Tooltip styling */
+
+/* Tooltip container */
+.tooltip {
+    position: relative;
+    display: inline-block;
+}
+
+/* Tooltip text */
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+
+    /* Position the tooltip text - see examples below! */
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -60px;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltiptext {
+    visibility: visible;
 }
 
 

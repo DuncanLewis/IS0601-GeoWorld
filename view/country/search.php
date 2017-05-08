@@ -32,14 +32,20 @@
 <h2>Showing results for <?php echo $searchQuery; ?></h2>
 
 <article id="country-search">
-<?php foreach ($countryList as $country) : ?>
 
-    <!-- ToDo: check this is correct usage of article element -->
-    <article class="search-item">
-        <h3><a href="/country/view/<?php echo $country['A3Code']; ?>"><?php echo $country['Name']; ?></a></h3>
-        A country in the continent of <strong><?php echo $country['Continent']; ?></strong>, <strong><?php echo $country['Name']; ?></strong> has a population of <strong><?php echo $country['Population']; ?></strong>.
-    </article>
+    <div class="auto-grid">
+        <?php foreach ($countryList as $country) : ?>
+            <div class="box">
+                <div class="card">
+                    <img class="card-img" src="https://source.unsplash.com/400x267/?<?php echo $country['Name']; ?>" alt="<?php echo $country['Name']; ?>" />
 
-<?php endforeach; ?>
+                    <div class="card-img-overlay">
+                        <h4 class="card-title"><a href="country/view/<?php echo $country['A3Code']; ?>"> <?php echo $country['Name']; ?></a></h4>
+                    </div>
+                </div>
+            </div>
+        <?php endforeach; ?>
+    </div>
+
 </article>
 

@@ -60,7 +60,9 @@ class CountryController extends Controller
      */
     public function search($query) {
 
-        $query = $_POST['countryQuery'];
+        if (empty($query)) {
+            $query = $_POST['countryQuery'];
+        }
 
         //Check if string is under 3 characters long, if so then error ToDo: check if this needs to be less than or <=
         if (strlen($query) < 3) {
@@ -81,11 +83,29 @@ class CountryController extends Controller
             $this->redirect('country', 'view', array($country));
         }
 
+        $this->set('query', $query);
+
         //Return results to the page
         $this->set('countryList', $countryList);
 
         //Also return the original query to show some context for user
         $this->set('searchQuery', $query);
+
+    }
+
+
+    public function updateHeadOfState() {
+
+        $countryId = $_POST['id'];
+        $headOfState = $_POST['HeadOfState'];
+
+        $data = array(
+            'HeadOfState' => $headOfState
+        );
+
+        $this->Country->update($countryId, $data);
+
+
 
     }
 
